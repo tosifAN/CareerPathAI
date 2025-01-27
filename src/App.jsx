@@ -1,17 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
 import Footer from './components/Footer';
+import Homepage from './pages/Homepage';
+import Services from './pages/Services';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <Navbar />
-      <Hero />
-      <Services />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/about" element={<div>About Page</div>} /> {/* Example */}
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
