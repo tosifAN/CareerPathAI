@@ -10,17 +10,14 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Brain className="h-8 w-8 text-indigo-600" />
-            <span className="ml-2 text-xl font-bold text-gray-900">CareerAI</span>
+            <span className="ml-2 text-xl font-bold text-gray-900">CareerPathAI</span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="/" className="text-gray-700 hover:text-indigo-600">Home</a>
             <a href="/services" className="text-gray-700 hover:text-indigo-600">Services</a>
             <a href="/about" className="text-gray-700 hover:text-indigo-600">About</a>
-            <a href="#contact" className="text-gray-700 hover:text-indigo-600">Contact</a>
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
-              Get Started
-            </button>
+            <a href="/contact" className="text-gray-700 hover:text-indigo-600">Contact</a>
           </div>
 
           <div className="md:hidden flex items-center">

@@ -4,6 +4,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Services from './pages/Services';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import AICareerChatbot from './pages/services/AICareerChatbot';
+import ATSTracking from './pages/services/Atstracking';
+import CareerRoadmap from './pages/services/CareerRoadmap';
+import RemoteJobListings from './pages/services/RemoteJobListings';
 
 function App() {
   return (
@@ -13,7 +19,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<div>About Page</div>} /> {/* Example */}
+          <Route path="/about" element={<About />} /> 
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/services/aicareerchatbot" element={<AICareerChatbot />} />
+          <Route path="/services/atstracking" element={<ATSTracking />} />
+          <Route path="/services/careerroadmap" element={<CareerRoadmap />} />
+          <Route path="/services/remotejoblistings" element={<RemoteJobListings />} />
           <Route path="*" element={<div>404 - Page Not Found</div>} />
         </Routes>
         <Footer />

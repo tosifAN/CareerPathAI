@@ -14,12 +14,6 @@ const Hero = () => {
             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
               Navigate your career journey with confidence using our AI-driven career counseling platform. Get personalized guidance, skill assessments, and job recommendations tailored to your unique profile.
             </p>
-            <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left">
-              <button className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-                <Bot className="mr-2 h-5 w-5" />
-                Start Career Assessment
-              </button>
-            </div>
           </div>
           <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
             <div className="relative">
