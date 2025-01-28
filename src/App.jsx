@@ -11,7 +11,7 @@ import ATSTracking from './pages/services/ATSTracking';
 import CareerRoadmap from './pages/services/CareerRoadmap';
 import RemoteJobListings from './pages/services/RemoteJobListings';
 
-function App() the {
+function App(){
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
