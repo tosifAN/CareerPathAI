@@ -22,22 +22,22 @@ const Footer = () => {
             </h3>
             <ul className="mt-4 space-y-4">
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/services/atstracking" className="text-base text-gray-300 hover:text-white">
                   ATS Tracking
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/services/aicareerchatbot" className="text-base text-gray-300 hover:text-white">
                   AI Chatbot
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/services/careerroadmap" className="text-base text-gray-300 hover:text-white">
                   Career Roadmap
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/services/remotejoblistings" className="text-base text-gray-300 hover:text-white">
                   Remote Jobs
                 </a>
               </li>
@@ -50,22 +50,22 @@ const Footer = () => {
             </h3>
             <ul className="mt-4 space-y-4">
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/about" className="text-base text-gray-300 hover:text-white">
                   About
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/blog" className="text-base text-gray-300 hover:text-white">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/careers" className="text-base text-gray-300 hover:text-white">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="#" className="text-base text-gray-300 hover:text-white">
+                <a href="/privacy-policy" className="text-base text-gray-300 hover:text-white">
                   Privacy Policy
                 </a>
               </li>

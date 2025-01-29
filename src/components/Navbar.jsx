@@ -34,10 +34,10 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
-            <a href="#services" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
-            <a href="#about" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
-            <a href="#contact" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+            <a href="/" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="/services" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Services</a>
+            <a href="/about" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">About</a>
+            <a href="/contact" className="block px-3 py-2 text-gray-700 hover:text-indigo-600">Contact</a>
             <button className="w-full text-left bg-indigo-600 text-white px-3 py-2 rounded-md hover:bg-indigo-700">
               Get Started
             </button>
