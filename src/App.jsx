@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Services from './pages/Services';
+import JobListingPage from './services/RemoteJobs';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/about" element={<div>About Page</div>} /> {/* Example */}
           <Route path="*" element={<div>404 - Page Not Found</div>} />
+          <Route path="/services/joblisting" element={<JobListingPage />} />
         </Routes>
         <Footer />
       </div>
