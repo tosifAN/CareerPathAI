@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileSearch, MessageSquare, Map, Briefcase, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -9,7 +10,8 @@ const services = [
     color: 'text-blue-600',
     bgColor: 'bg-blue-100',
     image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&q=80',
-    features: ['Real-time ATS Score', 'Keyword Analysis', 'Format Optimization', 'Industry Benchmarks']
+    features: ['Real-time ATS Score', 'Keyword Analysis', 'Format Optimization', 'Industry Benchmarks'],
+    link: '/services/atstracking'
   },
   {
     title: 'AI Career Chatbot',
@@ -18,7 +20,8 @@ const services = [
     color: 'text-green-600',
     bgColor: 'bg-green-100',
     image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80',
-    features: ['24/7 Availability', 'Personalized Advice', 'Interview Practice', 'Skill Recommendations']
+    features: ['24/7 Availability', 'Personalized Advice', 'Interview Practice', 'Skill Recommendations'],
+    link: '/services/aicareerchatbot'
   },
   {
     title: 'Career Roadmap',
@@ -27,7 +30,8 @@ const services = [
     color: 'text-purple-600',
     bgColor: 'bg-purple-100',
     image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80',
-    features: ['Custom Learning Paths', 'Skill Gap Analysis', 'Industry Insights', 'Progress Tracking']
+    features: ['Custom Learning Paths', 'Skill Gap Analysis', 'Industry Insights', 'Progress Tracking'],
+    link: '/services/careerroadmap'
   },
   {
     title: 'Remote Job Listings',
@@ -36,7 +40,8 @@ const services = [
     color: 'text-red-600',
     bgColor: 'bg-red-100',
     image: 'https://images.unsplash.com/photo-1593642532842-98d0fd5ebc1a?auto=format&fit=crop&q=80',
-    features: ['AI-Matched Jobs', 'Salary Insights', 'Company Research', 'Application Tracking']
+    features: ['AI-Matched Jobs', 'Salary Insights', 'Company Research', 'Application Tracking'],
+    link: '/services/remotejoblistings'
   },
 ];
 
@@ -129,8 +134,11 @@ const Services = () => {
                       <button 
                         className={`group px-8 py-4 rounded-lg bg-white font-semibold ${service.color} transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center space-x-2`}
                       >
+                        <Link to={service.link} className="flex items-center space-x-2">
+
                         <span>Explore {service.title}</span>
                         <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                        </Link>
                       </button>
                     </div>
                   </div>

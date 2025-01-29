@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-1">
             <div className="flex items-center">
               <Brain className="h-8 w-8 text-indigo-400" />
-              <span className="ml-2 text-xl font-bold text-white">CareerAI</span>
+              <span className="ml-2 text-xl font-bold text-white">CareerPathAI</span>
             </div>
             <p className="mt-4 text-gray-400">
               Empowering careers through artificial intelligence and personalized guidance.
@@ -79,7 +79,7 @@ const Footer = () => {
             <ul className="mt-4 space-y-4">
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-indigo-400 mr-2" />
-                <span className="text-gray-300">support@careerai.com</span>
+                <span className="text-gray-300">support@careerpathai.com</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-indigo-400 mr-2" />
@@ -95,7 +95,7 @@ const Footer = () => {
         
         <div className="mt-8 border-t border-gray-700 pt-8">
           <p className="text-base text-gray-400 text-center">
-            © {new Date().getFullYear()} CareerAI. All rights reserved.
+            © {new Date().getFullYear()} CareerPathAI. All rights reserved.
           </p>
         </div>
       </div>
