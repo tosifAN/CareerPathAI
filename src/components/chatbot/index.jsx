@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, {Component } from 'react';
 import ChatWindow from './ChatWindow';
 import launcherIcon from '../../assets/logo-no-bg.svg';
 import incomingMessageSound from '../../assets/sounds/notification.mp3';
@@ -8,7 +8,6 @@ import messageHistory from './messageHistory';
 import "../../assets/styles"
 
 class ChatBot extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -97,7 +96,6 @@ ChatBot.defaultProps = {
 
 
 class Demo extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -148,10 +146,13 @@ class Demo extends Component {
   }
 
   render() {
-    return <div>
+    return <div className="fixed bottom-5 right-5 flex flex-col items-end">
+    <div
+      className={`transition-all duration-300 ease-in-out ${this.state.isOpen ? 'opacity-100' : 'opacity-0 hidden'}`}
+    >
       <ChatBot
         agentProfile={{
-          teamName: 'DataPirates',
+          teamName: 'AI-Counselor',
           imageUrl: 'https://media.istockphoto.com/id/1010001882/vector/%C3%B0%C3%B0%C2%B5%C3%B1%C3%B0%C3%B1%C3%B1.jpg?s=612x612&w=0&k=20&c=1jeAr9KSx3sG7SKxUPR_j8WPSZq_NIKL0P-MA4F1xRw='
           // imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
         }}
@@ -164,6 +165,12 @@ class Demo extends Component {
         showEmoji
       />
     </div>;
+    <button
+          onClick={this._handleClick.bind(this)}
+          className="relative flex items-center justify-center w-20 h-20 bg-blue-500 hover:bg-blue-700 text-white rounded-full shadow-xl transition-all duration-300 ease-in-out hover:scale-125 hover:shadow-2xl hover:ring-4 hover:ring-blue-300 animate-pulse border-4 border-white animate-spin-slow"
+        >
+<span className="text-3xl animate-bounce">{this.state.isOpen ? '✖' : '💬'}</span>        </button>
+    </div>
   }
 }
 
