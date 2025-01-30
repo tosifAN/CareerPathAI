@@ -48,7 +48,7 @@ function AICareerChatbot() {
         messages: [
           {
             role: "system",
-            content: "You are an experienced career counselor with expertise in professional development, job search strategies, and interview preparation. Provide specific, actionable advice while being empathetic and encouraging. Focus on practical steps and modern career development approaches."
+            content: "You are an experienced career counselor with expertise in professional development, job search strategies, and interview preparation. Provide specific, actionable advice while being empathetic and encouraging. Focus on practical steps and modern career development approaches. Maximum response size 50 words."
           },
           ...state.messages.map(msg => ({
             role: msg.role,
@@ -84,26 +84,24 @@ function AICareerChatbot() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      <div className="relative py-3 sm:max-w-xl sm:mx-auto w-full px-4 sm:px-0">
+      <div className="relative py-3 sm:max-w-3xl sm:mx-auto w-full px-4 sm:px-0">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 min-h-[80vh] flex flex-col">
-          <div className="max-w-md mx-auto w-full">
+          <div className="max-w-2xl mx-auto w-full">
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <h1 className="text-3xl font-bold text-center mb-8 text-blue-600">AI Career Counselor</h1>
-                
-                <div className="h-[50vh] overflow-y-auto mb-4 space-y-4 p-4">
+  
+                <div className="h-[80vh] overflow-y-auto mb-4 space-y-4 p-4">
                   {state.messages.map((message, index) => (
                     <ChatMessage key={index} message={message} />
                   ))}
                   {state.isLoading && (
-                    <div className="text-center text-gray-500">
-                      Thinking...
-                    </div>
+                    <div className="text-center text-gray-500">Thinking...</div>
                   )}
                   <div ref={messagesEndRef} />
                 </div>
-
+  
                 <form onSubmit={handleSubmit} className="mt-4">
                   <div className="flex items-center space-x-3">
                     <input
@@ -131,5 +129,4 @@ function AICareerChatbot() {
     </div>
   );
 }
-
-export default AICareerChatbot;
+export default AICareerChatbot;  

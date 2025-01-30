@@ -7,7 +7,7 @@ const ChatMessage = ({ message }) => {
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
       <div
-        className={`max-w-[80%] rounded-lg p-4 ${
+        className={`max-w-[100%] rounded-lg p-4 ${
           isUser
             ? 'bg-blue-500 text-white rounded-br-none'
             : 'bg-gray-200 text-gray-800 rounded-bl-none'
