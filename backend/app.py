@@ -35,6 +35,10 @@ safety_settings = [
     for category in ["HARASSMENT", "HATE_SPEECH", "SEXUALLY_EXPLICIT", "DANGEROUS_CONTENT"]
 ]
 
+@app.route("/")
+def hello():
+    return "Hello, World!"
+    
 def generate_response_from_gemini(input_text):
     llm = genai.GenerativeModel(
         model_name="gemini-1.5-flash",

@@ -11,7 +11,7 @@ import AICareerChatbot from './pages/services/AICareerChatbot';
 import ATSTracking from './pages/services/ATSTracking';
 import CareerRoadmap from './pages/services/CareerRoadmap';
 import RemoteJobListings from './pages/services/RemoteJobListings';
-import PrivacyPolicy from './pages/PrivacyPolicy';
+//import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import Careers from './pages/Career';
 import Blog from './pages/blog';
 
