@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import JobListings from "../../components/JobListings";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
+import { motion } from "framer-motion";
+import Background from "../../components/Background";
 
-function RemoteJobListings() {
+function JobListingPage() {
   return (
-    <div id="remotejoblistings" className="py-16 bg-gradient-to-r from-indigo-600 to-purple-700">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-extrabold text-white mb-6">
-          Welcome to RemoteJobListings
-        </h2>
-        <p className="text-lg text-gray-200 mb-8">
-          Explore the best remote job opportunities and take your career to the next level from anywhere in the world.
-        </p>
-        <div className="mt-8">
-          <button className="px-6 py-3 text-white bg-green-400 hover:bg-green-500 rounded-lg shadow-lg transform transition duration-300 ease-in-out hover:scale-105">
-            Find Jobs
-          </button>
-        </div>
-      </div>
-    </div>
+    <>
+    <Background/>
+    <main className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 overflow-hidden">
+      {/* Three.js 3D Background */}
+      <Canvas className="absolute top-10 left-0 w-full h-full z-0">
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[2, 5, 2]} intensity={1} />
+        <OrbitControls enableZoom={false} />
+        <Sphere args={[1, 100, 200]} scale={2.5} position={[0, 0, -2]}>
+          <MeshDistortMaterial color="#ffffff" attach="material" distort={0.5} speed={2} />
+        </Sphere>
+      </Canvas>
+      
+      {/* Animated Heading */}
+      <motion.h1 
+        className="relative text-5xl font-extrabold text-white mb-10 text-center z-10"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        Remote Job Listings
+      </motion.h1>
+      
+      {/* Animated Job Listings Section */}
+      <motion.section 
+        className="relative bg-white shadow-xl rounded-3xl p-8 w-full max-w-5xl z-10"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <JobListings />
+      </motion.section>
+    </main>
+    </>
   );
 }
 
-export default RemoteJobListings;
+export default JobListingPage;
