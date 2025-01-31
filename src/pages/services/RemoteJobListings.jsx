@@ -3,9 +3,12 @@ import JobListings from "../../components/JobListings";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import { motion } from "framer-motion";
+import Background from "../../components/Background";
 
 function JobListingPage() {
   return (
+    <>
+    <Background/>
     <main className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 overflow-hidden">
       {/* Three.js 3D Background */}
       <Canvas className="absolute top-10 left-0 w-full h-full z-0">
@@ -37,6 +40,7 @@ function JobListingPage() {
         <JobListings />
       </motion.section>
     </main>
+    </>
   );
 }
 

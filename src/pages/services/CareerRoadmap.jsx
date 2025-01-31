@@ -61,8 +61,7 @@ function CareerRoadmap() {
       <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-2">
-            <MapPin className="w-7 h-7 text-indigo-600" />
-            <h1 className="mt-24 text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 text-transparent bg-clip-text">
+            <h1 className="mt-24  text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 text-transparent bg-clip-text">
               Career Roadmap Generator
             </h1>
           </div>

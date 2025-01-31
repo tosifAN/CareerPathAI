@@ -1,0 +1,10 @@
+flask 
+pyPDF2 
+docx2txt 
+sentence-transformers 
+scikit-learn 
+python-dotenv 
+werkzeug
+google-generativeai
+plotly
+

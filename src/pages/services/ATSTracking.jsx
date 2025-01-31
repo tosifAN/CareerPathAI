@@ -1,257 +1,344 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { FileUploader } from 'react-drag-drop-files';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FileText,
-  Link2,
   Upload,
-  Sparkles,
   AlertCircle,
-  CheckCircle2,
   Loader2,
+  ChevronDown,
+  CheckCircle2,
+  Target,
+  Award,
+  AlertTriangle,
+  FileSearch,
+  Sparkles,
+  Rocket,
+  Zap,
 } from 'lucide-react';
+import Background from '../../components/Background';
 
-function ATSTracking() {
-  const [jobDescription, setJobDescription] = useState('');
-  const [jobLink, setJobLink] = useState('');
-  const [resume, setResume] = useState(null);
-  const [resumeLink, setResumeLink] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [score, setScore] = useState(null);
-  const [activeTab, setActiveTab] = useState('text');
-  const [resumeTab, setResumeTab] = useState('file');
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
 
-  const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setResume(e.target.files[0]);
-    }
-  };
+const FileUploaderComponent = ({ onFileChange }) => (
+  <motion.div 
+    className="w-full"
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <FileUploader
+      handleChange={onFileChange}
+      name="file"
+      types={['PDF', 'DOCX']}
+      classes="w-full"
+      maxSize={10}
+      minSize={0}
+    >
+      <div className="flex flex-col items-center text-center cursor-pointer p-8 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 hover:border-white/20 transition-all">
+        <Upload className="w-12 h-12 text-blue-400 mb-4" />
+        <p className="text-lg text-white/90 font-medium">
+          Drag & drop your resume or click to browse
+        </p>
+        <p className="text-sm text-white/60 mt-2">
+          Supported formats: PDF, DOCX (max 10MB)
+        </p>
+      </div>
+    </FileUploader>
+  </motion.div>
+);
 
-  const analyzeMatch = useCallback(() => {
-    setIsAnalyzing(true);
-    // Simulate analysis with a random score
-    setTimeout(() => {
-      setScore(Math.floor(Math.random() * 41) + 60); // Random score between 60-100
-      setIsAnalyzing(false);
-    }, 2000);
-  }, []);
+const StatsCard = ({ icon: Icon, title, value, color }) => (
+  <motion.div 
+    className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10"
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+  >
+    <div className="flex items-center gap-3 mb-3">
+      <Icon className={`w-6 h-6 ${color}`} />
+      <h3 className="text-lg font-semibold text-white">{title}</h3>
+    </div>
+    <p className="text-3xl font-bold text-white/90">{value}</p>
+  </motion.div>
+);
 
-  const getScoreColor = (score) => {
-    if (score >= 80) return 'text-green-500';
-    if (score >= 70) return 'text-yellow-500';
-    return 'text-red-500';
-  };
-
-  const isFormValid = () => {
-    if (activeTab === 'text' && !jobDescription) return false;
-    if (activeTab === 'link' && !jobLink) return false;
-    if (resumeTab === 'file' && !resume) return false;
-    if (resumeTab === 'link' && !resumeLink) return false;
-    return true;
+const AnalysisResults = ({ result, expanded, onToggle }) => {
+  const getMatchColor = (percentage) => {
+    if (percentage >= 80) return 'text-green-400';
+    if (percentage >= 60) return 'text-yellow-400';
+    return 'text-red-400';
   };
 
   return (
-    <div className="mt-9 min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-8">
-      <div className="mt-6 max-w-4xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 transform transition-all hover:scale-[1.02]">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-            <Sparkles className="text-purple-500" />
-            Resume Match Analyzer
-          </h1>
-          <p className="text-gray-600 mb-8">
-            Let's analyze how well your resume matches the job requirements
-          </p>
-
-          {/* Job Description Section */}
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Job Description</h2>
-            <div className="flex gap-4 mb-4">
-              <button
-                className={`flex-1 p-3 rounded-lg flex items-center justify-center gap-2 transition-all ${
-                  activeTab === 'text'
-                    ? 'bg-purple-100 text-purple-700'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-                onClick={() => setActiveTab('text')}
-              >
-                <FileText size={20} />
-                Text Input
-              </button>
-              <button
-                className={`flex-1 p-3 rounded-lg flex items-center justify-center gap-2 transition-all ${
-                  activeTab === 'link'
-                    ? 'bg-purple-100 text-purple-700'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-                onClick={() => setActiveTab('link')}
-              >
-                <Link2 size={20} />
-                URL Input
-              </button>
-            </div>
-
-            {activeTab === 'text' ? (
-              <textarea
-                className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
-                rows={6}
-                placeholder="Paste the job description here..."
-                value={jobDescription}
-                onChange={(e) => setJobDescription(e.target.value)}
-              />
-            ) : (
-              <input
-                type="url"
-                className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
-                placeholder="Enter job posting URL..."
-                value={jobLink}
-                onChange={(e) => setJobLink(e.target.value)}
-              />
-            )}
+    <motion.div
+      variants={fadeIn}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="border-t border-white/10"
+    >
+      <div className="p-6">
+        <motion.button
+          onClick={onToggle}
+          className="flex items-center justify-between w-full"
+          whileHover={{ scale: 1.02 }}
+        >
+          <div className="flex items-center gap-3">
+            <Target className="w-8 h-8 text-blue-400" />
+            <h2 className="text-2xl font-bold text-white">Analysis Results</h2>
           </div>
-
-          {/* Resume Section */}
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">Your Resume</h2>
-            <div className="flex gap-4 mb-4">
-              <button
-                className={`flex-1 p-3 rounded-lg flex items-center justify-center gap-2 transition-all ${
-                  resumeTab === 'file'
-                    ? 'bg-purple-100 text-purple-700'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-                onClick={() => setResumeTab('file')}
-              >
-                <Upload size={20} />
-                Upload PDF
-              </button>
-              <button
-                className={`flex-1 p-3 rounded-lg flex items-center justify-center gap-2 transition-all ${
-                  resumeTab === 'link'
-                    ? 'bg-purple-100 text-purple-700'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-                onClick={() => setResumeTab('link')}
-              >
-                <Link2 size={20} />
-                Resume URL
-              </button>
-            </div>
-
-            {resumeTab === 'file' ? (
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                <input
-                  type="file"
-                  accept=".pdf"
-                  onChange={handleFileChange}
-                  className="hidden"
-                  id="resume-upload"
-                />
-                <label
-                  htmlFor="resume-upload"
-                  className="cursor-pointer flex flex-col items-center gap-2"
-                >
-                  <Upload className="text-gray-400 mb-2" size={32} />
-                  <span className="text-gray-600">
-                    {resume ? resume.name : 'Click to upload or drag and drop'}
-                  </span>
-                  <span className="text-gray-400 text-sm">PDF files only</span>
-                </label>
-              </div>
-            ) : (
-              <input
-                type="url"
-                className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-all"
-                placeholder="Enter resume URL..."
-                value={resumeLink}
-                onChange={(e) => setResumeLink(e.target.value)}
-              />
-            )}
-          </div>
-
-          <button
-            onClick={analyzeMatch}
-            disabled={!isFormValid() || isAnalyzing}
-            className={`w-full py-4 rounded-lg font-semibold transition-all ${
-              isFormValid() && !isAnalyzing
-                ? 'bg-purple-600 text-white hover:bg-purple-700'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            }`}
+          <motion.div
+            animate={{ rotate: expanded ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
           >
-            {isAnalyzing ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader2 className="animate-spin" />
-                Analyzing...
-              </span>
-            ) : (
-              'Analyze Match'
-            )}
-          </button>
-        </div>
+            <ChevronDown className="w-6 h-6 text-white/60" />
+          </motion.div>
+        </motion.button>
 
-        {/* Results Section */}
-        {score !== null && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 transform transition-all hover:scale-[1.02]">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Sparkles className="text-purple-500" />
-              Analysis Results
-            </h2>
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-gray-600">Match Score:</span>
-              <span className={`text-4xl font-bold ${getScoreColor(score)}`}>
-                {score}%
-              </span>
-            </div>
-            <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className={`h-full transition-all duration-1000 ${
-                  score >= 80
-                    ? 'bg-green-500'
-                    : score >= 70
-                    ? 'bg-yellow-500'
-                    : 'bg-red-500'
-                }`}
-                style={{ width: `${score}%` }}
-              />
-            </div>
-            <div className="mt-6 p-4 rounded-lg bg-gray-50">
-              {score >= 80 ? (
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="text-green-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-green-700">Excellent Match!</h3>
-                    <p className="text-gray-600">
-                      Your resume aligns very well with the job requirements. Consider applying
-                      right away!
-                    </p>
+        <AnimatePresence>
+          {expanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="mt-8 space-y-6"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <StatsCard
+                  icon={Target}
+                  title="Match Score"
+                  value={`${result.matchPercentage}%`}
+                  color={getMatchColor(result.matchPercentage)}
+                />
+                <StatsCard
+                  icon={Sparkles}
+                  title="Key Strengths"
+                  value={result.strengths?.length || 0}
+                  color="text-green-400"
+                />
+                <StatsCard
+                  icon={Zap}
+                  title="Areas to Improve"
+                  value={result.areasForImprovement?.length || 0}
+                  color="text-yellow-400"
+                />
+              </div>
+
+              <div className="space-y-6">
+                <motion.div 
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <AlertTriangle className="w-6 h-6 text-yellow-400" />
+                    <h3 className="text-xl font-semibold text-white">Missing Keywords</h3>
                   </div>
-                </div>
-              ) : score >= 70 ? (
-                <div className="flex items-start gap-3">
-                  <AlertCircle className="text-yellow-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-yellow-700">Good Match</h3>
-                    <p className="text-gray-600">
-                      Your resume matches most requirements. Consider highlighting relevant
-                      experience more prominently.
-                    </p>
+                  <div className="flex flex-wrap gap-2">
+                    {result.missingKeywords?.map((keyword, index) => (
+                      <span key={index} className="px-3 py-1 bg-white/5 rounded-full text-white/80">
+                        {keyword}
+                      </span>
+                    )) || 'None'}
                   </div>
-                </div>
-              ) : (
-                <div className="flex items-start gap-3">
-                  <AlertCircle className="text-red-500 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-red-700">Needs Improvement</h3>
-                    <p className="text-gray-600">
-                      Consider tailoring your resume more specifically to this role's
-                      requirements.
-                    </p>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Award className="w-6 h-6 text-green-400" />
+                    <h3 className="text-xl font-semibold text-white">Key Strengths</h3>
                   </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+                  <ul className="space-y-3">
+                    {result.strengths?.map((strength, index) => (
+                      <motion.li 
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="flex items-center gap-2 text-white/80"
+                      >
+                        <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0" />
+                        {strength}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+
+                <motion.div 
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Rocket className="w-6 h-6 text-blue-400" />
+                    <h3 className="text-xl font-semibold text-white">Candidate Summary</h3>
+                  </div>
+                  <p className="text-white/80 leading-relaxed">
+                    {result.candidateSummary || 'No summary available.'}
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
+  );
+};
+
+export default function ATSResumeAnalyzer() {
+  const [jobDescription, setJobDescription] = useState('');
+  const [file, setFile] = useState(null);
+  const [analysisResult, setAnalysisResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [expanded, setExpanded] = useState(true);
+
+  const handleChange = (file) => {
+    setFile(file);
+    setError(null);
+  };
+
+  const handleSubmit = async () => {
+    if (!jobDescription.trim()) {
+      setError('Please provide a job description');
+      return;
+    }
+    if (!file) {
+      setError('Please upload a resume');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('job_description', jobDescription);
+
+    try {
+      const response = await axios.post('http://localhost:5000/analyze', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      setAnalysisResult(response.data);
+      setExpanded(true);
+    } catch (error) {
+      setError('Failed to analyze resume. Please try again.');
+      console.error('Error analyzing resume:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+    <Background />
+      <div className="relative min-h-screen py-12 px-4 overflow-hidden">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+          >
+            <div className="bg-gradient-to-r from-blue-600/80 to-indigo-600/80 p-8">
+              <motion.div 
+                className="flex items-center gap-4"
+                initial={{ x: -20 }}
+                animate={{ x: 0 }}
+              >
+                <FileSearch className="w-12 h-12 text-white" />
+                <div>
+                  <h1 className="text-4xl font-bold text-white">ATS Resume Analyzer</h1>
+                  <p className="mt-2 text-xl text-white/80">
+                    Optimize your resume for Applicant Tracking Systems
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="p-8 space-y-8">
+              <motion.div variants={fadeIn} initial="initial" animate="animate">
+                <label className="block text-lg font-medium text-white mb-3">
+                  Job Description
+                </label>
+                <textarea
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
+                  className="w-full min-h-[150px] p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  placeholder="Paste the job description here..."
+                />
+              </motion.div>
+
+              <motion.div variants={fadeIn} initial="initial" animate="animate">
+                <label className="block text-lg font-medium text-white mb-3">
+                  Resume Upload
+                </label>
+                <FileUploaderComponent onFileChange={handleChange} />
+                {file && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 mt-3 text-green-400"
+                  >
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span>{file.name}</span>
+                  </motion.div>
+                )}
+              </motion.div>
+
+              {error && (
+                <motion.div 
+                  variants={fadeIn}
+                  initial="initial"
+                  animate="animate"
+                  className="flex items-center gap-3 text-red-400 bg-red-400/10 p-4 rounded-xl border border-red-400/20"
+                >
+                  <AlertCircle className="w-6 h-6 flex-shrink-0" />
+                  <p>{error}</p>
+                </motion.div>
+              )}
+
+              <motion.button
+                onClick={handleSubmit}
+                disabled={loading}
+                className={`w-full py-4 px-6 rounded-xl font-medium text-white transition-all flex items-center justify-center gap-3 ${
+                  loading
+                    ? 'bg-blue-600/50 cursor-not-allowed'
+                    : 'bg-blue-600 hover:bg-blue-700'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-6 h-6 animate-spin" />
+                    Analyzing Resume...
+                  </>
+                ) : (
+                  <>
+                    <Rocket className="w-6 h-6" />
+                    Analyze Resume
+                  </>
+                )}
+              </motion.button>
+            </div>
+
+            <AnimatePresence>
+              {analysisResult && (
+                <AnalysisResults
+                  result={analysisResult}
+                  expanded={expanded}
+                  onToggle={() => setExpanded(!expanded)}
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default ATSTracking;
