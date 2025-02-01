@@ -6,7 +6,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-sm fixed w-full z-50 pr-6 md:pr-10">
+    <nav className="bg-white shadow-sm fixed top-0 left-0 w-full z-50 pr-6 md:pr-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -38,7 +38,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden bg-white shadow-md absolute w-full left-0 pr-4 md:pr-8"
+            className="md:hidden bg-white shadow-md absolute w-full left-0 top-16 pr-4 md:pr-8"
           >
             <div className="px-4 pt-2 pb-3 space-y-2 sm:px-6">
               <a href="/" className="block px-4 py-2 text-gray-700 hover:text-indigo-600">Home</a>
