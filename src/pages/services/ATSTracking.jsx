@@ -191,7 +191,7 @@ const AnalysisResults = ({ result, expanded, onToggle }) => {
   );
 };
 
-export default function ATSResumeAnalyzer() {
+export default function ATSTracking() {
   const [jobDescription, setJobDescription] = useState('');
   const [file, setFile] = useState(null);
   const [analysisResult, setAnalysisResult] = useState(null);
