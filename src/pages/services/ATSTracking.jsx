@@ -221,7 +221,7 @@ export default function ATSTracking() {
     formData.append('job_description', jobDescription);
 
     try {
-      const response = await axios.post('http://194.163.45.52:5000/analyze', formData, {
+      const response = await axios.post('https://m0c48jv5c2.execute-api.us-east-1.amazonaws.com/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAnalysisResult(response.data);
