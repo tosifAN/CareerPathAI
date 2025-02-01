@@ -11,7 +11,7 @@ import AICareerChatbot from './pages/services/AICareerChatbot';
 import ATSTracking from './pages/services/ATSTracking';
 import CareerRoadmap from './pages/services/CareerRoadmap';
 import RemoteJobListings from './pages/services/RemoteJobListings';
-//import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import Careers from './pages/Career';
 import Blog from './pages/blog';
 
@@ -36,7 +36,7 @@ function App(){
           <Route path="/blog" element={<Blog />} />
 
           <Route path="*" element={<div>404 - Page Not Found</div>} />
-=        </Routes>
+        </Routes>
         <Footer />
       </div>
     </Router>
