@@ -31,6 +31,7 @@ function App(){
           <Route path="/services/atstracking" element={<ATSTracking />} />
           <Route path="/services/careerroadmap" element={<CareerRoadmap />} />
           <Route path="/services/remotejoblistings" element={<RemoteJobListings />} />
+          
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="/blog" element={<Blog />} />
