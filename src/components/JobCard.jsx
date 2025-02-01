@@ -3,7 +3,15 @@ import { MapPin, DollarSign, ArrowUpRight } from "react-feather";
 
 function JobCard({ job }) {
   const randomLocation = () => {
-    const locations = ["Remote", "Banglore", "Hydrebad", "Pune", "Mumbai", "Chennai", "Gurugram"];
+    const locations = [
+      "Remote",
+      "Bangalore",
+      "Hyderabad",
+      "Pune",
+      "Mumbai",
+      "Chennai",
+      "Gurugram"
+    ];
     return locations[Math.floor(Math.random() * locations.length)];
   };
 
@@ -42,6 +50,20 @@ function JobCard({ job }) {
           <DollarSign className="w-4 h-4 mr-2" />
           {formatSalary(job.salary_max)}
         </div>
+
+        {/* Tags Section */}
+        {job.tags && job.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {job.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Button container stays at the bottom */}
