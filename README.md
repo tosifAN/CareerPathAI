@@ -27,7 +27,7 @@ CareerPathAI is an AI-driven career counseling platform designed to provide pers
    ```
 3. Start the development servers:
    ```sh
-   npm start 
+   npm run dev
    ```
 
 ## Future Plans
