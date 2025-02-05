@@ -1,5 +1,6 @@
 import React from 'react';
-import { Bot } from 'lucide-react';
+import { Bot, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -14,6 +15,20 @@ const Hero = () => {
             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
               Navigate your career journey with confidence using our AI-driven career counseling platform. Get personalized guidance, skill assessments, and job recommendations tailored to your unique profile.
             </p>
+            <div className="mt-8 sm:mt-10">
+              <button
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-transform duration-200"
+              >
+              <Link to={'/services/assessment'} className="flex items-center space-x-2">
+                <Bot className="w-5 h-5 mr-2" />
+                Start Career Assessment
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+              </button>
+              <p className="mt-3 text-sm text-gray-500">
+                Free assessment • 10 minutes • Personalized report
+              </p>
+            </div>
           </div>
           <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
             <div className="relative">
