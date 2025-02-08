@@ -15,6 +15,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Careers from './pages/Career';
 import Blog from './pages/blog';
 import Assessment from './pages/services/Assessment';
+import Upcomingcodingcontests from './pages/services/Upcomingcodingcontests';
 
 function App(){
   return (
@@ -33,6 +34,7 @@ function App(){
           <Route path="/services/careerroadmap" element={<CareerRoadmap />} />
           <Route path="/services/remotejoblistings" element={<RemoteJobListings />} />
           <Route path="/services/assessment" element={<Assessment />} />
+          <Route path="/services/upcoming-coding-contests" element={<Upcomingcodingcontests />} />
           
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/careers" element={<Careers />} />
