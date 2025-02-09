@@ -8,3 +8,4 @@ werkzeug
 google-generativeai
 plotly
 gunicorn
+flask_cors
