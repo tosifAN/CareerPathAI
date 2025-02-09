@@ -262,7 +262,7 @@ export default function ATSTracking() {
     formData.append('job_description', jobDescription);
 
     try {
-      const response = await axios.post('https://careerpathai-1.onrender.com/analyze', formData, {
+      const response = await axios.post('https://careerpathai-production.up.railway.app/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAnalysisResult(response.data);
