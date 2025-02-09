@@ -191,8 +191,49 @@ const AnalysisResults = ({ result, expanded, onToggle }) => {
   );
 };
 
+const defaultJobDescription = `Software Development Engineer (SDE) Job Description
+
+Job Title: Software Development Engineer (SDE)  
+Location: [Specify Location or Remote]  
+Job Type: [Full-time/Part-time/Contract]  
+
+Job Summary:
+We are looking for a highly skilled **Software Development Engineer (SDE)** to design, develop, and maintain scalable and high-performance software solutions. The ideal candidate will have strong problem-solving skills, a passion for coding, and experience in building reliable software applications.
+
+Key Responsibilities:
+- Design, develop, and implement high-quality software solutions.
+- Collaborate with cross-functional teams to define and refine product requirements.
+- Write clean, maintainable, and efficient code following best practices.
+- Debug, test, and troubleshoot software applications.
+- Optimize applications for speed, scalability, and security.
+- Participate in code reviews to ensure high standards of software quality.
+- Continuously improve and innovate software development processes.
+- Stay up to date with the latest technologies and industry trends.
+
+Qualifications:
+- Bachelor's or Master’s degree in Computer Science, Engineering, or a related field.
+- Proficiency in one or more programming languages such as **Java, Python, C++, or JavaScript**.
+- Experience with **data structures, algorithms, and object-oriented design**.
+- Knowledge of **databases (SQL/NoSQL)** and cloud services (AWS, Azure, or GCP).
+- Familiarity with software development tools such as **Git, Docker, Kubernetes, and CI/CD pipelines**.
+- Strong analytical and problem-solving skills.
+- Excellent communication and teamwork abilities.
+
+Preferred Skills:
+- Experience with microservices architecture and API development.
+- Knowledge of frontend technologies like React, Angular, or Vue.js.
+- Understanding of DevOps and agile development methodologies.
+- Exposure to AI/ML, big data, or distributed computing is a plus.
+
+Benefits:
+- Competitive salary and performance-based incentives.
+- Flexible work arrangements and remote work options.
+- Health, dental, and vision insurance.
+- Learning and development opportunities.
+- A collaborative and innovative work environment.
+`;
 export default function ATSTracking() {
-  const [jobDescription, setJobDescription] = useState('');
+  const [jobDescription, setJobDescription] = useState(defaultJobDescription);
   const [file, setFile] = useState(null);
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -269,48 +310,7 @@ export default function ATSTracking() {
                   value={jobDescription}
                   onChange={(e) => setJobDescription(e.target.value)}
                   className="w-full min-h-[150px] p-4 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  placeholder="### Software Development Engineer (SDE) Job Description  
-
-**Job Title:** Software Development Engineer (SDE)  
-**Location:** [Specify Location or Remote]  
-**Job Type:** [Full-time/Part-time/Contract]  
-
-#### **Job Summary:**  
-We are looking for a highly skilled **Software Development Engineer (SDE)** to design, develop, and maintain scalable and high-performance software solutions. The ideal candidate will have strong problem-solving skills, a passion for coding, and experience in building reliable software applications.  
-
-#### **Key Responsibilities:**  
-- Design, develop, and implement high-quality software solutions.  
-- Collaborate with cross-functional teams to define and refine product requirements.  
-- Write clean, maintainable, and efficient code following best practices.  
-- Debug, test, and troubleshoot software applications.  
-- Optimize applications for speed, scalability, and security.  
-- Participate in code reviews to ensure high standards of software quality.  
-- Continuously improve and innovate software development processes.  
-- Stay up to date with the latest technologies and industry trends.  
-
-#### **Qualifications:**  
-- Bachelor's or Master’s degree in Computer Science, Engineering, or a related field.  
-- Proficiency in one or more programming languages such as **Java, Python, C++, or JavaScript**.  
-- Experience with **data structures, algorithms, and object-oriented design**.  
-- Knowledge of **databases (SQL/NoSQL)** and cloud services (AWS, Azure, or GCP).  
-- Familiarity with software development tools such as **Git, Docker, Kubernetes, and CI/CD pipelines**.  
-- Strong analytical and problem-solving skills.  
-- Excellent communication and teamwork abilities.  
-
-#### **Preferred Skills:**  
-- Experience with microservices architecture and API development.  
-- Knowledge of frontend technologies like React, Angular, or Vue.js.  
-- Understanding of DevOps and agile development methodologies.  
-- Exposure to AI/ML, big data, or distributed computing is a plus.  
-
-#### **Benefits:**  
-- Competitive salary and performance-based incentives.  
-- Flexible work arrangements and remote work options.  
-- Health, dental, and vision insurance.  
-- Learning and development opportunities.  
-- A collaborative and innovative work environment.  
-
-Would you like me to tailor this description for a specific company or experience level?"
+                  placeholder="Paste the job description here... "
                 />
               </motion.div>
 
