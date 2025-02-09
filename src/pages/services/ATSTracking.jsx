@@ -198,7 +198,7 @@ Location: [Specify Location or Remote]
 Job Type: [Full-time/Part-time/Contract]  
 
 Job Summary:
-We are looking for a highly skilled **Software Development Engineer (SDE)** to design, develop, and maintain scalable and high-performance software solutions. The ideal candidate will have strong problem-solving skills, a passion for coding, and experience in building reliable software applications.
+We are looking for a highly skilled Software Development Engineer (SDE) to design, develop, and maintain scalable and high-performance software solutions. The ideal candidate will have strong problem-solving skills, a passion for coding, and experience in building reliable software applications.
 
 Key Responsibilities:
 - Design, develop, and implement high-quality software solutions.
@@ -262,7 +262,7 @@ export default function ATSTracking() {
     formData.append('job_description', jobDescription);
 
     try {
-      const response = await axios.post('https://careerpathai-production.up.railway.app/analyze', formData, {
+      const response = await axios.post('https://m0c48jv5c2.execute-api.us-east-1.amazonaws.com/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAnalysisResult(response.data);
