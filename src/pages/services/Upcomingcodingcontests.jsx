@@ -16,7 +16,7 @@ function Upcomingcodingcontests() {
   useEffect(() => {
     const fetchContests = async () => {
       try {
-        const response = await axios.get('https://careerpathai-1.onrender.com/contests');
+        const response = await axios.get('https://careerpathai-production.up.railway.app/contests');
         setContests(response.data);
         setLoading(false);
       } catch (err) {
@@ -30,7 +30,7 @@ function Upcomingcodingcontests() {
   useEffect(() => {
     const fetchHackathons = async () => {
       try {
-        const response = await axios.get('https://careerpathai-1.onrender.com/hackathons');
+        const response = await axios.get('https://careerpathai-production.up.railway.app/hackathons');
         setHackathons(response.data.hackathons);
         setLoadingHackathons(false);
       } catch (err) {
